@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Click on the cat to give it food! </h1>
+<br> <img id="catpic" src="cat.jpeg" alt="picture of cute cat">
+<br><br> <span id="totalCounter" />
+
+<script>
+    var catpic = document.getElementById("catpic");
+    var total = document.getElementById("totalCounter");
+    catpic.onclick = function(e){
+        fetch("/catclicker", {method:"POST"})
+            .then( response => response.text() )
+            .then( text => total.textContent = text )
+        ;
+    }
+    // optional
+    document.body.onload = function (e) {
+        fetch("/catclicker", {method:"GET"})
+            .then( response => response.text() )
+            .then( text => total.textContent = text )
+        ;
+    }
+</script>
+</body>
+</html>
